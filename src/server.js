@@ -17,7 +17,7 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-  origin: 'https://job-portal-63en.onrender.com', // Replace with your deployed domain
+    origin: '*', // Replace with your deployed domain
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,  // Enable credentials (e.g., cookies, authorization headers)
 };
