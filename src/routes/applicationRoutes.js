@@ -56,7 +56,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/applications:
+ * /applications:
  *   post:
  *     summary: Apply for a job
  *     tags: [Applications]
@@ -78,7 +78,7 @@ router.post('/', applyForJob);
 
 /**
  * @swagger
- * /api/applications:
+ * /applications:
  *   get:
  *     summary: Get all applications
  *     tags: [Applications]

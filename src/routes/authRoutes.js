@@ -11,7 +11,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/auth/login:
+ * /auth/login:
  *   post:
  *     summary: Log in to get a JWT token
  *     tags: [Auth]

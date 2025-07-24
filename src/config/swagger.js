@@ -10,7 +10,7 @@ const options = {
     },
     servers: [
       {
-        url: 'https://job-portal-63en.onrender.com/api', 
+        url: 'https://job-portal-63en.onrender.com/api', // Correct base URL
         description: 'Production server',
       },
     ],

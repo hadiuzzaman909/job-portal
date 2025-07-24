@@ -86,7 +86,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/jobs:
+ * /jobs:
  *   get:
  *     summary: Get all jobs
  *     tags: [Jobs]
@@ -106,7 +106,7 @@ router.get('/', getJobs);
 
 /**
  * @swagger
- * /api/jobs/{id}:
+ * /jobs/{id}:
  *   get:
  *     summary: Get a job by ID
  *     tags: [Jobs]
@@ -133,7 +133,7 @@ router.get('/:id', getJobById);
 
 /**
  * @swagger
- * /api/jobs:
+ * /jobs:
  *   post:
  *     summary: Add a new job (Admin only)
  *     tags: [Jobs]
