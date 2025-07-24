@@ -55,6 +55,21 @@ const router = express.Router();
  *         description:
  *           type: string
  *           example: Developing cutting-edge software
+ *         jobResponsibilities:
+ *           type: array
+ *           items:
+ *             type: string
+ *           example: 
+ *             - Collaborate with the team to develop features
+ *             - Write clean, maintainable code
+ *         skillRequirements:
+ *           type: array
+ *           items:
+ *             type: string
+ *           example:
+ *             - JavaScript
+ *             - Node.js
+ *             - MongoDB
  *         salary:
  *           $ref: '#/components/schemas/Salary'
  *         jobType:
@@ -83,6 +98,7 @@ const router = express.Router();
  *           type: string
  *           example: '603c72ef5f2a4b1b88cd9a8e'  # Example user ID
  */
+
 
 /**
  * @swagger
@@ -157,6 +173,7 @@ router.get('/:id', getJobById);
  *       500:
  *         description: Internal server error
  */
+
 router.post('/', authenticateJWT, addJob); // Only admin can add a job
 
 module.exports = router;

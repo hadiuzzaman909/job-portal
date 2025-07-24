@@ -20,7 +20,17 @@ const JobSchema = new mongoose.Schema({
   title: { type: String, required: true },
   company: { type: String, required: true },
   location: { type: LocationSchema, required: true },
-  description: { type: String, required: true },
+  description: { type: String, required: true },  // Job description (text)
+  jobResponsibilities: { 
+    type: [String], 
+    required: true, 
+    validate: [(arr) => arr.length > 0, 'At least one responsibility is required']
+  },  // Multiple responsibilities (array of strings)
+  skillRequirements: { 
+    type: [String], 
+    required: true, 
+    validate: [(arr) => arr.length > 0, 'At least one skill requirement is required']
+  },  // Multiple skills (array of strings)
   salary: { type: SalarySchema, required: true },
   jobType: { type: String, enum: ['Full-time', 'Part-time', 'Contract', 'Internship'], required: true },
   requirements: { 
