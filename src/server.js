@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 const express = require('express');
-const cors = require('cors');
+const cors = require('cors'); // Only import once
 const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
@@ -15,8 +15,14 @@ const config = require('./config/config'); // config contains MONGODB_URI and ot
 
 const app = express();
 
-// Enable CORS for all requests (including Swagger UI)
-app.use(cors());
+// CORS configuration
+const corsOptions = {
+  origin: 'https://job-portal-63en.onrender.com', // Replace with your deployed domain
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,  // Enable credentials (e.g., cookies, authorization headers)
+};
+
+app.use(cors(corsOptions));  // Apply CORS configuration
 
 // Connect to MongoDB
 mongoose.connect(config.MONGODB_URI, {
@@ -34,16 +40,6 @@ app.use(express.json());
 
 // Swagger UI Route
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-const bcrypt = require('bcryptjs');
-
-const password = 'Admin@123';
-bcrypt.hash(password, 10, (err, hashedPassword) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(hashedPassword); // Copy this hashed value to your .env file
-  }
-});
 
 // API Routes
 app.use('/api/jobs', jobRoutes);

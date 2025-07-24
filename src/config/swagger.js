@@ -10,8 +10,8 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:3000/api',
-        description: 'Development server',
+        url: 'https://job-portal-63en.onrender.com/api', 
+        description: 'Production server',
       },
     ],
     components: {
