@@ -19,86 +19,83 @@ const router = express.Router();
  *       properties:
  *         city:
  *           type: string
- *           example: New York
+ *           description: The city of the job's location
  *         state:
  *           type: string
- *           example: NY
+ *           description: The state of the job's location
  *         country:
  *           type: string
- *           example: USA
+ *           description: The country of the job's location
  *         zipCode:
  *           type: string
- *           example: "10001"
+ *           description: The zip code of the job's location (optional)
  *     Salary:
  *       type: object
  *       properties:
  *         min:
  *           type: number
- *           example: 60000
+ *           description: The minimum salary for the job
  *         max:
  *           type: number
- *           example: 120000
+ *           description: The maximum salary for the job
  *         currency:
  *           type: string
- *           default: USD
+ *           description: The currency of the salary (default is USD)
+ *           default: 'USD'
  *     Job:
  *       type: object
  *       properties:
  *         title:
  *           type: string
- *           example: Software Developer
+ *           description: The title of the job (e.g., Software Developer)
  *         company:
  *           type: string
- *           example: TechCorp
+ *           description: The name of the company offering the job
  *         location:
  *           $ref: '#/components/schemas/Location'
  *         description:
  *           type: string
- *           example: Developing cutting-edge software
+ *           description: A description of the job responsibilities and expectations
  *         jobResponsibilities:
  *           type: array
  *           items:
  *             type: string
- *           example: 
- *             - Collaborate with the team to develop features
- *             - Write clean, maintainable code
+ *           description: A list of job responsibilities
  *         skillRequirements:
  *           type: array
  *           items:
  *             type: string
- *           example:
- *             - JavaScript
- *             - Node.js
- *             - MongoDB
+ *           description: A list of skills required for the job
  *         salary:
  *           $ref: '#/components/schemas/Salary'
  *         jobType:
  *           type: string
  *           enum: ['Full-time', 'Part-time', 'Contract', 'Internship']
- *           example: Full-time
+ *           description: The type of job (e.g., Full-time, Part-time)
  *         requirements:
  *           type: array
  *           items:
  *             type: string
- *           example: ['JavaScript', 'Node.js', 'MongoDB']
+ *           description: A list of other job requirements
  *         benefits:
  *           type: array
  *           items:
  *             type: string
- *           example: ['Health Insurance', '401K']
+ *           description: A list of benefits provided by the employer
  *         applicationDeadline:
  *           type: string
  *           format: date
- *           example: '2023-12-31'
+ *           description: The deadline for job applications
  *         jobStatus:
  *           type: string
  *           enum: ['Active', 'Closed', 'On Hold']
- *           default: Active
+ *           description: The status of the job posting
+ *           default: 'Active'
  *         postedBy:
  *           type: string
+ *           description: The ID of the user who posted the job
  *           example: '603c72ef5f2a4b1b88cd9a8e'  # Example user ID
  */
-
 
 /**
  * @swagger
@@ -115,6 +112,41 @@ const router = express.Router();
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Job'
+ *         examples:
+ *           application/json:
+ *             value: [
+ *               {
+ *                 "title": "Software Developer",
+ *                 "company": "TechCorp",
+ *                 "location": {
+ *                   "city": "New York",
+ *                   "state": "NY",
+ *                   "country": "USA",
+ *                   "zipCode": "10001"
+ *                 },
+ *                 "description": "Developing cutting-edge software",
+ *                 "jobResponsibilities": [
+ *                   "Collaborate with the team to develop features",
+ *                   "Write clean, maintainable code"
+ *                 ],
+ *                 "skillRequirements": [
+ *                   "JavaScript",
+ *                   "Node.js",
+ *                   "MongoDB"
+ *                 ],
+ *                 "salary": {
+ *                   "min": 60000,
+ *                   "max": 120000,
+ *                   "currency": "USD"
+ *                 },
+ *                 "jobType": "Full-time",
+ *                 "requirements": ["JavaScript", "Node.js", "MongoDB"],
+ *                 "benefits": ["Health Insurance", "401K"],
+ *                 "applicationDeadline": "2023-12-31",
+ *                 "jobStatus": "Active",
+ *                 "postedBy": "603c72ef5f2a4b1b88cd9a8e"
+ *               }
+ *             ]
  *       500:
  *         description: Internal server error
  */
@@ -173,7 +205,5 @@ router.get('/:id', getJobById);
  *       500:
  *         description: Internal server error
  */
-
-router.post('/', authenticateJWT, addJob); // Only admin can add a job
-
+router.post('/', authenticateJWT, addJob); 
 module.exports = router;
