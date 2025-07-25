@@ -206,4 +206,38 @@ router.get('/:id', getJobById);
  *         description: Internal server error
  */
 router.post('/', authenticateJWT, addJob); 
+
+/**
+ * @swagger
+ * /jobs/{id}:
+ *   delete:
+ *     summary: Delete a job (Admin only)
+ *     tags: [Jobs]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The job ID
+ *     responses:
+ *       200:
+ *         description: Job successfully deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Job deleted successfully
+ *       404:
+ *         description: Job not found
+ *       500:
+ *         description: Internal server error
+ */
+router.delete('/:id', authenticateJWT, deleteJob); // Added delete route
+
 module.exports = router;

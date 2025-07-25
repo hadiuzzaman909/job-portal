@@ -71,3 +71,16 @@ exports.addJob = async (req, res) => {
     res.status(500).json({ message: 'Error saving job', error: error.message });
   }
 };
+
+// Delete a job by ID (Admin only)
+exports.deleteJob = async (req, res) => {
+  try {
+    const job = await JobModel.findByIdAndDelete(req.params.id);
+    if (!job) {
+      return res.status(404).json({ message: 'Job not found' });
+    }
+    res.json({ message: 'Job deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting job' });
+  }
+};
