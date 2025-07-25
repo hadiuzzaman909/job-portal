@@ -45,7 +45,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // Routes
 app.use('/api/jobs', jobRoutes);          // Correct, as per the Swagger configuration
 app.use('/api/auth', authRoutes);         // Correct
-app.use('/api/application', applicationRoutes);  // Correct
+app.use('/api/applications', applicationRoutes);  // Correct
 
 // Error Handler (must be last middleware)
 app.use(errorHandler);

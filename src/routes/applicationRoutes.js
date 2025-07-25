@@ -18,47 +18,49 @@ const router = express.Router();
  *       properties:
  *         street:
  *           type: string
- *           example: "1234 Elm Street"
  *         city:
  *           type: string
- *           example: "New York"
  *         country:
  *           type: string
- *           example: "USA"
+ *       required:
+ *         - street
+ *         - city
+ *         - country
  *     Application:
  *       type: object
  *       properties:
  *         jobId:
  *           type: string
  *           description: ID of the job being applied for
- *           example: "603c72ef5f2a4b1b88cd9a8e"  # Example Job ID
  *         name:
  *           type: string
  *           description: Full name of the applicant
- *           example: "John Doe"
  *         email:
  *           type: string
  *           description: Email address of the applicant
- *           example: "john.doe@example.com"
  *         cvLink:
  *           type: string
  *           description: Link to the applicant's CV
- *           example: "https://example.com/cv.pdf"
  *         phoneNumber:
  *           type: string
  *           description: Phone number of the applicant
- *           example: "+1234567890"
  *         coverLetter:
  *           type: string
  *           description: The applicant's cover letter
- *           example: "I am very interested in this position because..."
  *         applicantAddress:
  *           $ref: '#/components/schemas/Address'
  *         applicationStatus:
  *           type: string
  *           enum: [Pending, Under Review, Accepted, Rejected]
  *           description: Current status of the application
- *           example: "Pending"
+ *       required:
+ *         - jobId
+ *         - name
+ *         - email
+ *         - cvLink
+ *         - phoneNumber
+ *         - coverLetter
+ *         - applicantAddress
  */
 
 /**
