@@ -50,16 +50,15 @@ app.use('/api/applications', applicationRoutes);  // Correct
 // Error Handler (must be last middleware)
 app.use(errorHandler);
 
-app.get('/', () => {
-    res.json({
-        message: 'Welcome to the Job Board API!',
-        documentation: `Visit https://job-portal-63en.onrender.com/api-docs for API documentation`,
-        endpoints: {
-            auth: '/auth',
-            jobs: '/jobs',
-            applications: '/applications',
-        },
-    });
+app.get('/', (req, res) => {
+    res.send('Job Portal is running!');
+});
+
+
+// Add this to log all incoming requests
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
 });
 
 // Server Start

@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { ADMIN_USERNAME, ADMIN_PASSWORD, JWT_SECRET } = require('../config/config');
-
+const logger = require('../utils/logger');
 // Login to get JWT token
 exports.login = (req, res) => {
     const { username, password } = req.body;
-
+    logger.info('ggdfgd')
     if (username !== ADMIN_USERNAME) return res.status(400).json({ message: 'Invalid username' });
 
     // Compare the provided password with the stored hashed password

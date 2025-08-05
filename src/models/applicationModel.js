@@ -11,32 +11,27 @@ const AddressSchema = new mongoose.Schema({
 const ApplicationSchema = new mongoose.Schema({
   jobId: { type: mongoose.Schema.Types.ObjectId, ref: 'Job', required: true }, // Reference to Job model
   name: { type: String, required: true },
-  email: { 
-    type: String, 
-    required: true, 
-    lowercase: true, 
-    match: [/\S+@\S+\.\S+/, 'Invalid email format'] 
+  email: { type: String, lowercase: true, required: true },
+  cvLink: { type: String, required: true },
+  phoneNumber: {
+    type: String,
+    required: true,
+    validate: {
+      validator: function(v) {
+        // Regular expression for international phone number
+        // + followed by country code (1-3 digits, not starting with 0) and 6-12 digits
+        const phoneRegex = /^\+[1-9]\d{1,2}\d{6,12}$/;
+        return phoneRegex.test(v);
+      },
+      message: props => `${props.value} is not a valid phone number! Use format: +[countrycode][number], e.g., +12025550123`
+    }
   },
-  cvLink: { 
-    type: String, 
-    required: true, 
-    match: [/^https?:\/\/.+/, 'Invalid URL'] 
-  },
-  phoneNumber: { 
-    type: String, 
-    required: true, 
-    match: [/^\+?[1-9]\d{1,14}$/, 'Invalid phone number'] 
-  },
-  coverLetter: { 
-    type: String, 
-    required: true, 
-    maxlength: [5000, 'Cover letter too long']
-  },
+  coverLetter: { type: String, required: true },
   applicantAddress: { type: AddressSchema, required: true },
   applicationStatus: { 
     type: String, 
-    enum: ['Pending', 'Under Review', 'Accepted', 'Rejected'], 
-    default: 'Pending' 
+    default: 'Pending',
+    enum: ['Pending', 'Accepted', 'Rejected'] // Optional: restrict to these values
   },
 }, {
   timestamps: true,

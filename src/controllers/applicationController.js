@@ -2,6 +2,7 @@ const ApplicationModel = require('../models/applicationModel');
 
 // Apply for a job
 exports.applyForJob = async (req, res) => {
+   console.log(req)
   const {
     jobId, name, email, cvLink, phoneNumber, coverLetter, applicantAddress
   } = req.body;
@@ -17,9 +18,11 @@ exports.applyForJob = async (req, res) => {
       applicantAddress
     });
 
+    console.log(newApplication)
     await newApplication.save();
     res.status(201).json(newApplication);
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: 'Error submitting application' });
   }
 };
