@@ -51,7 +51,7 @@ app.use('/api/applications', applicationRoutes);  // Correct
 app.use(errorHandler);
 
 app.get('/', (req, res) => {
-    res.send('Job Portal is running!');
+    res.send('Hello, this is my web server running on EC2!');
 });
 
 
